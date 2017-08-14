@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.net.sofwave.server.domain;
 
 import java.io.Serializable;
@@ -27,34 +22,41 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "mensagem")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Mensagem.findAll", query = "SELECT m FROM Mensagem m")
-    , @NamedQuery(name = "Mensagem.findByEnviada", query = "SELECT m FROM Mensagem m WHERE m.enviada = :enviada")
-    , @NamedQuery(name = "Mensagem.findByRecebida", query = "SELECT m FROM Mensagem m WHERE m.recebida = :recebida")
-    , @NamedQuery(name = "Mensagem.findByTransmissor", query = "SELECT m FROM Mensagem m WHERE m.mensagemPK.transmissor = :transmissor")
-    , @NamedQuery(name = "Mensagem.findByReceptor", query = "SELECT m FROM Mensagem m WHERE m.mensagemPK.receptor = :receptor")})
+    @NamedQuery(name = "Mensagem.findAll", query = "SELECT m FROM Mensagem m"),
+    @NamedQuery(name = "Mensagem.findByEnviada", query = "SELECT m FROM Mensagem m WHERE m.enviada = :enviada"),
+    @NamedQuery(name = "Mensagem.findByRecebida", query = "SELECT m FROM Mensagem m WHERE m.recebida = :recebida"),
+    @NamedQuery(name = "Mensagem.findByTransmissor", query = "SELECT m FROM Mensagem m WHERE m.mensagemPK.transmissor = :transmissor"),
+    @NamedQuery(name = "Mensagem.findByReceptor", query = "SELECT m FROM Mensagem m WHERE m.mensagemPK.receptor = :receptor")
+})
 public class Mensagem implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @EmbeddedId
     protected MensagemPK mensagemPK;
+    
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 65535)
     @Column(name = "texto")
     private String texto;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "enviada")
     @Temporal(TemporalType.TIMESTAMP)
     private Date enviada;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "recebida")
     private short recebida;
+    
     @JoinColumn(name = "receptor", referencedColumnName = "prontuario", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuario usuario;
+    
     @JoinColumn(name = "transmissor", referencedColumnName = "prontuario", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuario usuario1;
@@ -134,15 +136,11 @@ public class Mensagem implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Mensagem)) {
             return false;
         }
         Mensagem other = (Mensagem) object;
-        if ((this.mensagemPK == null && other.mensagemPK != null) || (this.mensagemPK != null && !this.mensagemPK.equals(other.mensagemPK))) {
-            return false;
-        }
-        return true;
+        return !((this.mensagemPK == null && other.mensagemPK != null) || (this.mensagemPK != null && !this.mensagemPK.equals(other.mensagemPK)));
     }
 
     @Override

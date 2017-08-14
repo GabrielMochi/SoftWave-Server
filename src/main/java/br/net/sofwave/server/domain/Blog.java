@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.net.sofwave.server.domain;
 
 import java.io.Serializable;
@@ -27,32 +22,39 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "blog")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Blog.findAll", query = "SELECT b FROM Blog b")
-    , @NamedQuery(name = "Blog.findById", query = "SELECT b FROM Blog b WHERE b.blogPK.id = :id")
-    , @NamedQuery(name = "Blog.findByTitulo", query = "SELECT b FROM Blog b WHERE b.titulo = :titulo")
-    , @NamedQuery(name = "Blog.findByVisible", query = "SELECT b FROM Blog b WHERE b.visible = :visible")
-    , @NamedQuery(name = "Blog.findByUsuarioProntuario", query = "SELECT b FROM Blog b WHERE b.blogPK.usuarioProntuario = :usuarioProntuario")
-    , @NamedQuery(name = "Blog.findByAreaConhecimentoid", query = "SELECT b FROM Blog b WHERE b.blogPK.areaConhecimentoid = :areaConhecimentoid")})
+    @NamedQuery(name = "Blog.findAll", query = "SELECT b FROM Blog b"),
+    @NamedQuery(name = "Blog.findById", query = "SELECT b FROM Blog b WHERE b.blogPK.id = :id"),
+    @NamedQuery(name = "Blog.findByTitulo", query = "SELECT b FROM Blog b WHERE b.titulo = :titulo"),
+    @NamedQuery(name = "Blog.findByVisible", query = "SELECT b FROM Blog b WHERE b.visible = :visible"),
+    @NamedQuery(name = "Blog.findByUsuarioProntuario", query = "SELECT b FROM Blog b WHERE b.blogPK.usuarioProntuario = :usuarioProntuario"),
+    @NamedQuery(name = "Blog.findByAreaConhecimentoid", query = "SELECT b FROM Blog b WHERE b.blogPK.areaConhecimentoid = :areaConhecimentoid")
+})
 public class Blog implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @EmbeddedId
     protected BlogPK blogPK;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2048)
     @Column(name = "titulo")
     private String titulo;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "visible")
     private short visible;
+    
     @JoinColumn(name = "areaConhecimento_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Areaconhecimento areaconhecimento;
+    
     @JoinColumn(name = "usuario_prontuario", referencedColumnName = "prontuario", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuario usuario;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "blog")
     private Collection<Comentario> comentarioCollection;
 
@@ -131,15 +133,11 @@ public class Blog implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Blog)) {
             return false;
         }
         Blog other = (Blog) object;
-        if ((this.blogPK == null && other.blogPK != null) || (this.blogPK != null && !this.blogPK.equals(other.blogPK))) {
-            return false;
-        }
-        return true;
+        return !((this.blogPK == null && other.blogPK != null) || (this.blogPK != null && !this.blogPK.equals(other.blogPK)));
     }
 
     @Override

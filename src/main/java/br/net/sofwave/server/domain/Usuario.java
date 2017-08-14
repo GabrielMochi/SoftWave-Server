@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.net.sofwave.server.domain;
 
 import java.io.Serializable;
@@ -26,32 +21,41 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "usuario")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
-    , @NamedQuery(name = "Usuario.findByProntuario", query = "SELECT u FROM Usuario u WHERE u.prontuario = :prontuario")
-    , @NamedQuery(name = "Usuario.findByPermissoes", query = "SELECT u FROM Usuario u WHERE u.permissoes = :permissoes")})
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
+    @NamedQuery(name = "Usuario.findByProntuario", query = "SELECT u FROM Usuario u WHERE u.prontuario = :prontuario"),
+    @NamedQuery(name = "Usuario.findByPermissoes", query = "SELECT u FROM Usuario u WHERE u.permissoes = :permissoes")
+})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "prontuario")
     private Integer prontuario;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 9)
     @Column(name = "permissoes")
     private String permissoes;
+    
     @ManyToMany(mappedBy = "usuarioCollection")
     private Collection<Turma> turmaCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Collection<Mensagem> mensagemCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario1")
     private Collection<Mensagem> mensagemCollection1;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Collection<Blog> blogCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Collection<Comentario> comentarioCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario1")
     private Collection<Comentario> comentarioCollection1;
 
@@ -146,15 +150,11 @@ public class Usuario implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Usuario)) {
             return false;
         }
         Usuario other = (Usuario) object;
-        if ((this.prontuario == null && other.prontuario != null) || (this.prontuario != null && !this.prontuario.equals(other.prontuario))) {
-            return false;
-        }
-        return true;
+        return !((this.prontuario == null && other.prontuario != null) || (this.prontuario != null && !this.prontuario.equals(other.prontuario)));
     }
 
     @Override

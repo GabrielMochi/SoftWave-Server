@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.net.sofwave.server.domain;
 
 import java.io.Serializable;
@@ -18,6 +13,7 @@ public class MensagemPK implements Serializable {
     @NotNull
     @Column(name = "transmissor")
     private int transmissor;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "receptor")
@@ -57,7 +53,6 @@ public class MensagemPK implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof MensagemPK)) {
             return false;
         }
@@ -65,10 +60,7 @@ public class MensagemPK implements Serializable {
         if (this.transmissor != other.transmissor) {
             return false;
         }
-        if (this.receptor != other.receptor) {
-            return false;
-        }
-        return true;
+        return this.receptor == other.receptor;
     }
 
     @Override

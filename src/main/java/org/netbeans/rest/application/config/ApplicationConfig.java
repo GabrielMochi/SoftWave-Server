@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.netbeans.rest.application.config;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
-/**
- *
- * @author gmoch
- */
 @javax.ws.rs.ApplicationPath("services")
 public class ApplicationConfig extends Application {
 
@@ -23,10 +14,10 @@ public class ApplicationConfig extends Application {
     }
 
     /**
-     * Do not modify addRestResourceClasses() method.
-     * It is automatically populated with
-     * all resources defined in the project.
-     * If required, comment out calling this method in getClasses().
+     * Não modifique o método addRestResourceClasses().
+     * Ele é preenchido automaticamente com todos os
+     * recursos definidos no projeto. 
+     * Se necessário, comente esse método em getClasses ().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(br.net.sofwave.server.service.AreaconhecimentoFacadeREST.class);

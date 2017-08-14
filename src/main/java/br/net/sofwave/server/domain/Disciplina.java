@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.net.sofwave.server.domain;
 
 import java.io.Serializable;
@@ -27,25 +22,31 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "disciplina")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Disciplina.findAll", query = "SELECT d FROM Disciplina d")
-    , @NamedQuery(name = "Disciplina.findById", query = "SELECT d FROM Disciplina d WHERE d.disciplinaPK.id = :id")
-    , @NamedQuery(name = "Disciplina.findByNome", query = "SELECT d FROM Disciplina d WHERE d.nome = :nome")
-    , @NamedQuery(name = "Disciplina.findByTurmaNumero", query = "SELECT d FROM Disciplina d WHERE d.disciplinaPK.turmaNumero = :turmaNumero")})
+    @NamedQuery(name = "Disciplina.findAll", query = "SELECT d FROM Disciplina d"),
+    @NamedQuery(name = "Disciplina.findById", query = "SELECT d FROM Disciplina d WHERE d.disciplinaPK.id = :id"),
+    @NamedQuery(name = "Disciplina.findByNome", query = "SELECT d FROM Disciplina d WHERE d.nome = :nome"),
+    @NamedQuery(name = "Disciplina.findByTurmaNumero", query = "SELECT d FROM Disciplina d WHERE d.disciplinaPK.turmaNumero = :turmaNumero")
+})
 public class Disciplina implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @EmbeddedId
     protected DisciplinaPK disciplinaPK;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "nome")
     private String nome;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "disciplina")
     private Collection<Atividade> atividadeCollection;
+    
     @JoinColumn(name = "turma_numero", referencedColumnName = "numero", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Turma turma;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "disciplina")
     private Collection<Questao> questaoCollection;
 
@@ -116,15 +117,11 @@ public class Disciplina implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Disciplina)) {
             return false;
         }
         Disciplina other = (Disciplina) object;
-        if ((this.disciplinaPK == null && other.disciplinaPK != null) || (this.disciplinaPK != null && !this.disciplinaPK.equals(other.disciplinaPK))) {
-            return false;
-        }
-        return true;
+        return !((this.disciplinaPK == null && other.disciplinaPK != null) || (this.disciplinaPK != null && !this.disciplinaPK.equals(other.disciplinaPK)));
     }
 
     @Override

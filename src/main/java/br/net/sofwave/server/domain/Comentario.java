@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.net.sofwave.server.domain;
 
 import java.io.Serializable;
@@ -23,37 +18,45 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "comentario")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Comentario.findAll", query = "SELECT c FROM Comentario c")
-    , @NamedQuery(name = "Comentario.findById", query = "SELECT c FROM Comentario c WHERE c.comentarioPK.id = :id")
-    , @NamedQuery(name = "Comentario.findByTexto", query = "SELECT c FROM Comentario c WHERE c.texto = :texto")
-    , @NamedQuery(name = "Comentario.findByVisible", query = "SELECT c FROM Comentario c WHERE c.visible = :visible")
-    , @NamedQuery(name = "Comentario.findByComentador", query = "SELECT c FROM Comentario c WHERE c.comentarioPK.comentador = :comentador")
-    , @NamedQuery(name = "Comentario.findByBlogId", query = "SELECT c FROM Comentario c WHERE c.comentarioPK.blogId = :blogId")
-    , @NamedQuery(name = "Comentario.findByReceptor", query = "SELECT c FROM Comentario c WHERE c.comentarioPK.receptor = :receptor")
-    , @NamedQuery(name = "Comentario.findByBlogareaConhecimentoid", query = "SELECT c FROM Comentario c WHERE c.comentarioPK.blogareaConhecimentoid = :blogareaConhecimentoid")})
+    @NamedQuery(name = "Comentario.findAll", query = "SELECT c FROM Comentario c"),
+    @NamedQuery(name = "Comentario.findById", query = "SELECT c FROM Comentario c WHERE c.comentarioPK.id = :id"),
+    @NamedQuery(name = "Comentario.findByTexto", query = "SELECT c FROM Comentario c WHERE c.texto = :texto"),
+    @NamedQuery(name = "Comentario.findByVisible", query = "SELECT c FROM Comentario c WHERE c.visible = :visible"),
+    @NamedQuery(name = "Comentario.findByComentador", query = "SELECT c FROM Comentario c WHERE c.comentarioPK.comentador = :comentador"),
+    @NamedQuery(name = "Comentario.findByBlogId", query = "SELECT c FROM Comentario c WHERE c.comentarioPK.blogId = :blogId"),
+    @NamedQuery(name = "Comentario.findByReceptor", query = "SELECT c FROM Comentario c WHERE c.comentarioPK.receptor = :receptor"),
+    @NamedQuery(name = "Comentario.findByBlogareaConhecimentoid", query = "SELECT c FROM Comentario c WHERE c.comentarioPK.blogareaConhecimentoid = :blogareaConhecimentoid")
+})
 public class Comentario implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @EmbeddedId
     protected ComentarioPK comentarioPK;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 1024)
     @Column(name = "texto")
     private String texto;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "visible")
     private short visible;
+    
     @JoinColumn(name = "blog_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Blog blog;
+    
     @JoinColumn(name = "blog_areaConhecimento_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Areaconhecimento areaconhecimento;
+    
     @JoinColumn(name = "comentador", referencedColumnName = "prontuario", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuario usuario;
+    
     @JoinColumn(name = "receptor", referencedColumnName = "prontuario", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuario usuario1;
@@ -140,15 +143,11 @@ public class Comentario implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Comentario)) {
             return false;
         }
         Comentario other = (Comentario) object;
-        if ((this.comentarioPK == null && other.comentarioPK != null) || (this.comentarioPK != null && !this.comentarioPK.equals(other.comentarioPK))) {
-            return false;
-        }
-        return true;
+        return !((this.comentarioPK == null && other.comentarioPK != null) || (this.comentarioPK != null && !this.comentarioPK.equals(other.comentarioPK)));
     }
 
     @Override

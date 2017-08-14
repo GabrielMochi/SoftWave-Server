@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.net.sofwave.server.domain;
 
 import java.io.Serializable;
@@ -24,34 +19,41 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "questao")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Questao.findAll", query = "SELECT q FROM Questao q")
-    , @NamedQuery(name = "Questao.findById", query = "SELECT q FROM Questao q WHERE q.questaoPK.id = :id")
-    , @NamedQuery(name = "Questao.findByRespostaCorreta", query = "SELECT q FROM Questao q WHERE q.respostaCorreta = :respostaCorreta")
-    , @NamedQuery(name = "Questao.findByAtividadeId", query = "SELECT q FROM Questao q WHERE q.questaoPK.atividadeId = :atividadeId")
-    , @NamedQuery(name = "Questao.findByAtividadeDisciplinaId", query = "SELECT q FROM Questao q WHERE q.questaoPK.atividadeDisciplinaId = :atividadeDisciplinaId")
-    , @NamedQuery(name = "Questao.findByAtividadeDisciplinaTurmaNumero", query = "SELECT q FROM Questao q WHERE q.questaoPK.atividadeDisciplinaTurmaNumero = :atividadeDisciplinaTurmaNumero")})
+    @NamedQuery(name = "Questao.findAll", query = "SELECT q FROM Questao q"),
+    @NamedQuery(name = "Questao.findById", query = "SELECT q FROM Questao q WHERE q.questaoPK.id = :id"),
+    @NamedQuery(name = "Questao.findByRespostaCorreta", query = "SELECT q FROM Questao q WHERE q.respostaCorreta = :respostaCorreta"),
+    @NamedQuery(name = "Questao.findByAtividadeId", query = "SELECT q FROM Questao q WHERE q.questaoPK.atividadeId = :atividadeId"),
+    @NamedQuery(name = "Questao.findByAtividadeDisciplinaId", query = "SELECT q FROM Questao q WHERE q.questaoPK.atividadeDisciplinaId = :atividadeDisciplinaId"),
+    @NamedQuery(name = "Questao.findByAtividadeDisciplinaTurmaNumero", query = "SELECT q FROM Questao q WHERE q.questaoPK.atividadeDisciplinaTurmaNumero = :atividadeDisciplinaTurmaNumero")
+})
 public class Questao implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @EmbeddedId
     protected QuestaoPK questaoPK;
+    
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 65535)
     @Column(name = "pergunta")
     private String pergunta;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2)
     @Column(name = "resposta_correta")
     private String respostaCorreta;
+    
     @JoinColumn(name = "atividade_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Atividade atividade;
+    
     @JoinColumn(name = "atividade_disciplina_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Disciplina disciplina;
+    
     @JoinColumn(name = "atividade_disciplina_turma_numero", referencedColumnName = "numero", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Turma turma;
@@ -130,15 +132,11 @@ public class Questao implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Questao)) {
             return false;
         }
         Questao other = (Questao) object;
-        if ((this.questaoPK == null && other.questaoPK != null) || (this.questaoPK != null && !this.questaoPK.equals(other.questaoPK))) {
-            return false;
-        }
-        return true;
+        return !((this.questaoPK == null && other.questaoPK != null) || (this.questaoPK != null && !this.questaoPK.equals(other.questaoPK)));
     }
 
     @Override

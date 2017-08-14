@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.net.sofwave.server.domain;
 
 import java.io.Serializable;
@@ -28,31 +23,40 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "turma")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Turma.findAll", query = "SELECT t FROM Turma t")
-    , @NamedQuery(name = "Turma.findByNumero", query = "SELECT t FROM Turma t WHERE t.numero = :numero")
-    , @NamedQuery(name = "Turma.findByNome", query = "SELECT t FROM Turma t WHERE t.nome = :nome")})
+    @NamedQuery(name = "Turma.findAll", query = "SELECT t FROM Turma t"),
+    @NamedQuery(name = "Turma.findByNumero", query = "SELECT t FROM Turma t WHERE t.numero = :numero"),
+    @NamedQuery(name = "Turma.findByNome", query = "SELECT t FROM Turma t WHERE t.nome = :nome")
+})
 public class Turma implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "numero")
     private Integer numero;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "nome")
     private String nome;
+    
     @JoinTable(name = "usuario_has_turma", joinColumns = {
-        @JoinColumn(name = "turma_numero", referencedColumnName = "numero")}, inverseJoinColumns = {
-        @JoinColumn(name = "usuario_prontuario", referencedColumnName = "prontuario")})
+        @JoinColumn(name = "turma_numero", referencedColumnName = "numero")
+    }, inverseJoinColumns = {
+        @JoinColumn(name = "usuario_prontuario", referencedColumnName = "prontuario")
+    })
     @ManyToMany
     private Collection<Usuario> usuarioCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "turma")
     private Collection<Atividade> atividadeCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "turma")
     private Collection<Disciplina> disciplinaCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "turma")
     private Collection<Questao> questaoCollection;
 
@@ -129,15 +133,11 @@ public class Turma implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Turma)) {
             return false;
         }
         Turma other = (Turma) object;
-        if ((this.numero == null && other.numero != null) || (this.numero != null && !this.numero.equals(other.numero))) {
-            return false;
-        }
-        return true;
+        return !((this.numero == null && other.numero != null) || (this.numero != null && !this.numero.equals(other.numero)));
     }
 
     @Override

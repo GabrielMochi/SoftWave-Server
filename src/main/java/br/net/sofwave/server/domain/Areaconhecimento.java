@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.net.sofwave.server.domain;
 
 import java.io.Serializable;
@@ -27,24 +22,29 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "areaconhecimento")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Areaconhecimento.findAll", query = "SELECT a FROM Areaconhecimento a")
-    , @NamedQuery(name = "Areaconhecimento.findById", query = "SELECT a FROM Areaconhecimento a WHERE a.id = :id")
-    , @NamedQuery(name = "Areaconhecimento.findByNome", query = "SELECT a FROM Areaconhecimento a WHERE a.nome = :nome")})
+    @NamedQuery(name = "Areaconhecimento.findAll", query = "SELECT a FROM Areaconhecimento a"),
+    @NamedQuery(name = "Areaconhecimento.findById", query = "SELECT a FROM Areaconhecimento a WHERE a.id = :id"),
+    @NamedQuery(name = "Areaconhecimento.findByNome", query = "SELECT a FROM Areaconhecimento a WHERE a.nome = :nome")
+})
 public class Areaconhecimento implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "nome")
     private String nome;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "areaconhecimento")
     private Collection<Blog> blogCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "areaconhecimento")
     private Collection<Comentario> comentarioCollection;
 
@@ -103,15 +103,11 @@ public class Areaconhecimento implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Areaconhecimento)) {
             return false;
         }
         Areaconhecimento other = (Areaconhecimento) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override

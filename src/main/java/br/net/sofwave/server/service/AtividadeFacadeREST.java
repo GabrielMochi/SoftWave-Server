@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.net.sofwave.server.service;
 
 import br.net.sofwave.server.domain.Atividade;
@@ -30,13 +25,6 @@ public class AtividadeFacadeREST extends AbstractFacade<Atividade> {
     private EntityManager em;
 
     private AtividadePK getPrimaryKey(PathSegment pathSegment) {
-        /*
-         * pathSemgent represents a URI path segment and any associated matrix parameters.
-         * URI path part is supposed to be in form of 'somePath;id=idValue;disciplinaId=disciplinaIdValue;disciplinaTurmaNumero=disciplinaTurmaNumeroValue'.
-         * Here 'somePath' is a result of getPath() method invocation and
-         * it is ignored in the following code.
-         * Matrix parameters are used as field names to build a primary key instance.
-         */
         br.net.sofwave.server.domain.AtividadePK key = new br.net.sofwave.server.domain.AtividadePK();
         javax.ws.rs.core.MultivaluedMap<String, String> map = pathSegment.getMatrixParameters();
         java.util.List<String> id = map.get("id");

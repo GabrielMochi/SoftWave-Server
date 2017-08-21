@@ -1,10 +1,10 @@
-package br.net.softwave.repository;
+package br.net.softwave.server.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import br.net.softwave.entity.UsuarioEntity;
+import br.net.softwave.server.entity.UsuarioEntity;
 
 public class LoginRepository {
 	

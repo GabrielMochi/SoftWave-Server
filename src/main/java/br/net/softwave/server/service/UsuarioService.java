@@ -1,14 +1,14 @@
-package br.net.softwave.service;
+package br.net.softwave.server.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Path;
 
-import br.net.softwave.entity.UsuarioEntity;
-import br.net.softwave.http.Usuario;
-import br.net.softwave.http.Usuario.Permissao;
-import br.net.softwave.repository.UsuarioRepository;
+import br.net.softwave.server.entity.UsuarioEntity;
+import br.net.softwave.server.http.Usuario;
+import br.net.softwave.server.http.Usuario.Permissao;
+import br.net.softwave.server.repository.UsuarioRepository;
 
 @Path("usuario")
 public class UsuarioService extends Service<Usuario, UsuarioEntity, String> {

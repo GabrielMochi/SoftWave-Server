@@ -1,4 +1,4 @@
-package br.net.softwave.service;
+package br.net.softwave.server.service;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import br.net.softwave.repository.Repository;
+import br.net.softwave.server.repository.Repository;
 
 /**
  * @param <T> Classe é http

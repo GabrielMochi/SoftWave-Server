@@ -1,4 +1,4 @@
-package br.net.softwave.repository;
+package br.net.softwave.server.repository;
 
 import java.util.List;
 

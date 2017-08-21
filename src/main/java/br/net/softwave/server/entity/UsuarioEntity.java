@@ -1,4 +1,4 @@
-package br.net.softwave.entity;
+package br.net.softwave.server.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import br.net.softwave.http.Usuario.Permissao;
+import br.net.softwave.server.http.Usuario.Permissao;
 
 @Entity
 @Table(name = "usuario")

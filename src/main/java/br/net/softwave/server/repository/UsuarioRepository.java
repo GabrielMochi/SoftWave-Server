@@ -1,6 +1,6 @@
-package br.net.softwave.repository;
+package br.net.softwave.server.repository;
 
-import br.net.softwave.entity.UsuarioEntity;
+import br.net.softwave.server.entity.UsuarioEntity;
 
 public class UsuarioRepository extends Repository<UsuarioEntity> {
 	

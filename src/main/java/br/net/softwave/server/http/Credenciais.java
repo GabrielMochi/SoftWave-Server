@@ -1,4 +1,4 @@
-package br.net.softwave.http;
+package br.net.softwave.server.http;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

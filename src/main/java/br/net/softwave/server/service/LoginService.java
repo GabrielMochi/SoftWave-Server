@@ -1,4 +1,4 @@
-package br.net.softwave.service;
+package br.net.softwave.server.service;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -6,11 +6,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import br.net.softwave.entity.UsuarioEntity;
-import br.net.softwave.http.Credenciais;
-import br.net.softwave.http.Usuario;
-import br.net.softwave.http.Usuario.Permissao;
-import br.net.softwave.repository.LoginRepository;
+import br.net.softwave.server.entity.UsuarioEntity;
+import br.net.softwave.server.http.Credenciais;
+import br.net.softwave.server.http.Usuario;
+import br.net.softwave.server.http.Usuario.Permissao;
+import br.net.softwave.server.repository.LoginRepository;
 
 @Path("login")
 public class LoginService {

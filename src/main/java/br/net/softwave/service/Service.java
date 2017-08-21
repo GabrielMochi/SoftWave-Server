@@ -27,28 +27,43 @@ public abstract class Service<T, E, P> {
 		this.repository = repository;
 	}
 	
+	/**
+	 * HTTP POST -> Salva um novo elemento.
+	 * */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("salvar")
 	public abstract void salvar(T object) throws Exception;
 	
+	/**
+	 * HTTP PUT -> Altera um elemento pelo id.
+	 * */
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("alterar")
 	public abstract void alterar(T object) throws Exception;
 	
+	/**
+	 * HTTP GET -> Pega todos os elementos.
+	 * */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("pegarTodos")
 	public abstract List<T> pegarTodos() throws Exception;
 	
+	/**
+	 * HTTP GET -> Pega um elemento pelo id.
+	 * */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("pegar/{id}")
 	public abstract T pegar(@PathParam("id") P id) throws Exception;
 	
+	/**
+	 * HTTP DELETE -> Deleta um elemento pelo id.
+	 * */
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("remover/{id}")

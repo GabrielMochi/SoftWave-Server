@@ -32,4 +32,9 @@ public class Credenciais {
 		this.senha = senha;
 	}
 
+	@Override
+	public String toString() {
+		return "Credenciais [prontuario=" + prontuario + ", senha=" + senha + "]";
+	}
+	
 }

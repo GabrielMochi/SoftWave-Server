@@ -14,7 +14,7 @@ public class UsuarioEntity {
 	
 	@Id
 	@Column(name="prontuario")
-	@Size(max = 7)
+	@Size(max = 8)
 	private String prontuario;
 	
 	@Column(name="permissao")

@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `softwave`.`comentario`(
     `visible` TINYINT NOT NULL,
     `comentador` VARCHAR(7)  NOT NULL,
     `blog_id` INT  NOT NULL,
-    `receptor` INT,
+    `receptor` VARCHAR(7)  NOT NULL,
     `blog_areaConhecimento_id` INT  NOT NULL,
     PRIMARY KEY(`id`, `comentador`, `blog_id`, `receptor`, `blog_areaConhecimento_id`),
     CONSTRAINT `fk_comentario_usuario`

@@ -7,20 +7,20 @@ public class AreaConhecimento {
 
 	private int id;
 	private String nome;
-	private String enderecoImagem;
+	private String corDeFundo;
 	
 	public AreaConhecimento() {
 	}
 	
-	public AreaConhecimento(String nome, String enderecoImagem) {
+	public AreaConhecimento(String nome, String corDeFundo) {
 		this.nome = nome;
-		this.enderecoImagem = enderecoImagem;
+		this.corDeFundo = corDeFundo;
 	}
 	
-	public AreaConhecimento(int id, String nome, String enderecoImagem) {	
+	public AreaConhecimento(int id, String nome, String corDeFundo) {	
 		this.id = id;
 		this.nome = nome;
-		this.enderecoImagem = enderecoImagem;
+		this.corDeFundo = corDeFundo;
 	}
 
 	public int getId() {
@@ -39,12 +39,12 @@ public class AreaConhecimento {
 		this.nome = nome;
 	}
 
-	public String getEnderecoImagem() {
-		return enderecoImagem;
+	public String getCorDeFundo() {
+		return corDeFundo;
 	}
 
-	public void setEnderecoImagem(String enderecoImagem) {
-		this.enderecoImagem = enderecoImagem;
+	public void setCorDeFundo(String corDeFundo) {
+		this.corDeFundo = corDeFundo;
 	}
 	
 }

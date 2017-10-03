@@ -15,9 +15,9 @@ import javax.ws.rs.core.MediaType;
 import br.net.softwave.server.repository.Repository;
 
 /**
- * @param <T> Classe é http
+ * @param <T> Classe http
  * @param <E> Classe entidade
- * @param <P> O tipo da chave primária. Ex.: Inteeger, String, etc.
+ * @param <P> O tipo da chave primária. Ex.: Integer, String, etc.
  * */
 public abstract class Service<T, E, P> {
 	

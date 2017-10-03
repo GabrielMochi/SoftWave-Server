@@ -6,7 +6,7 @@ CREATE SCHEMA IF NOT EXISTS `softwave` DEFAULT CHARACTER SET utf8;
 USE `softwave`;
 
 CREATE TABLE IF NOT EXISTS `softwave`.`usuario`(
-	`prontuario` INT(7) NOT NULL,
+	`prontuario` VARCHAR(7) NOT NULL,
     `permissoes` ENUM('ALUNO', 'PROFESSOR', 'ADMIN') NOT NULL,
     PRIMARY KEY(`prontuario`)
 )ENGINE = InnoDB;
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `softwave`.`turma` (
 )  ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS `softwave`.`usuario_has_turma`(
-	`usuario_prontuario` INT(7)  NOT NULL,
+	`usuario_prontuario` VARCHAR(7)  NOT NULL,
     `turma_numero` INT(3)  NOT NULL,
     PRIMARY KEY(`usuario_prontuario`, `turma_numero`),
     CONSTRAINT `fk_usuario_has_turma_usuario`
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `softwave`.`atividade` (
 CREATE TABLE IF NOT EXISTS `softwave`.`questao`(
 	`id` INT  NOT NULL AUTO_INCREMENT,
     `pergunta` TEXT NOT NULL,
-    `resposta_correta` ENUM('A', 'B', 'C', 'D', 'E') NOT NULL,
+    `respostaCorreta` ENUM('A', 'B', 'C', 'D', 'E') NOT NULL,
     `atividade_id` INT  NOT NULL,
     `atividade_disciplina_id` INT  NOT NULL,
     `atividade_disciplina_turma_numero` INT(3)  NOT NULL,
@@ -75,10 +75,10 @@ CREATE TABLE IF NOT EXISTS `softwave`.`questao`(
 
 CREATE TABLE IF NOT EXISTS `softwave`.`mensagem`(
 	`texto` TEXT NOT NULL,
-    `enviada` DATETIME NOT NULL,
+    `dataEnvio` DATETIME NOT NULL,
     `recebida` TINYINT  NOT NULL,
-    `transmissor` INT(7)  NOT NULL,
-    `receptor` INT(7)  NOT NULL,
+    `transmissor` VARCHAR(7)  NOT NULL,
+    `receptor` VARCHAR(7)  NOT NULL,
     PRIMARY KEY(`transmissor`, `receptor`),
     CONSTRAINT `fk_mensagem_usuarioTransmissor`
 		FOREIGN KEY(`transmissor`)
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `softwave`.`blog`(
 	`id` INT  NOT NULL AUTO_INCREMENT,
     `titulo` VARCHAR(2048) NOT NULL,
     `visible` TINYINT NOT NULL,
-    `usuario_prontuario` INT(7)  NOT NULL,
+    `usuario_prontuario` VARCHAR(7)  NOT NULL,
     `areaConhecimento_id` INT  NOT NULL,
     PRIMARY KEY(`id`, `usuario_prontuario`, `areaConhecimento_id`),
     CONSTRAINT `fk_blog_usuario`
@@ -113,9 +113,9 @@ CREATE TABLE IF NOT EXISTS `softwave`.`comentario`(
 	`id` INT  NOT NULL AUTO_INCREMENT,
     `texto` VARCHAR(1024) NOT NULL,
     `visible` TINYINT NOT NULL,
-    `comentador` INT(7)  NOT NULL,
+    `comentador` VARCHAR(7)  NOT NULL,
     `blog_id` INT  NOT NULL,
-    `receptor` INT(7)  NOT NULL,
+    `receptor` INT,
     `blog_areaConhecimento_id` INT  NOT NULL,
     PRIMARY KEY(`id`, `comentador`, `blog_id`, `receptor`, `blog_areaConhecimento_id`),
     CONSTRAINT `fk_comentario_usuario`
@@ -124,9 +124,9 @@ CREATE TABLE IF NOT EXISTS `softwave`.`comentario`(
 	CONSTRAINT `fk_comentario_blog`
 		FOREIGN KEY(`blog_id`)
         REFERENCES `softwave`.`blog`(`id`),
-	CONSTRAINT `fk_cometario_blog_usuario`
+	CONSTRAINT `fk_cometario_comentario`
 		FOREIGN KEY(`receptor`)
-        REFERENCES `softwave`.`usuario`(`prontuario`),
+        REFERENCES `softwave`.`comentario`(`id`),
 	CONSTRAINT `fk_comentario_blog_areaConhecimento`
 		FOREIGN KEY(`blog_areaConhecimento_id`)
         REFERENCES `softwave`.`areaconhecimento`(`id`)

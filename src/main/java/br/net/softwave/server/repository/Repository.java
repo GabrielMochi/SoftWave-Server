@@ -44,6 +44,7 @@ public abstract class Repository<T> {
 		entityManager.getTransaction().begin();
 		entityManager.merge(entity);
 		entityManager.getTransaction().commit();
+		entityManager.close();
 	}
 	
 	/**
@@ -55,7 +56,9 @@ public abstract class Repository<T> {
 	 * */
 	@SuppressWarnings("unchecked")
 	public List<T> pegarTodos(String query) throws Exception {
-		return this.entityManager.createQuery(query).getResultList();
+		List<T> objects = this.entityManager.createQuery(query).getResultList();
+		this.entityManager.close();
+		return objects;
 	}
 	
 	/**
@@ -66,7 +69,9 @@ public abstract class Repository<T> {
 	 * @return Objeto consultado
 	 * */
 	public <P> T pegar(P id) throws Exception {
-		return entityManager.find(entityClass, id);
+		T object = entityManager.find(entityClass, id);
+		entityManager.close();
+		return object;
 	}
 	
 	/**
@@ -79,6 +84,7 @@ public abstract class Repository<T> {
 		entityManager.getTransaction().begin();
 		entityManager.remove(pegar(id));
 		entityManager.getTransaction().commit();
+		entityManager.close();
 	}
 
 	public EntityManagerFactory getEntityManagerFactory() {

@@ -7,6 +7,9 @@
 	version="3.1">
 	
   <display-name>SoftWave-Server</display-name>
+  <welcome-file-list>
+  	<welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
   
   <jsp-config>
   	<jsp-property-group>
@@ -21,6 +24,10 @@
   	<init-param>
   		<param-name>jersey.config.server.provider.packages</param-name>
   		<param-value>br.net.softwave.server.service</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>jersey.config.server.provider.classnames</param-name>
+  		<param-value>org.glassfish.jersey.media.multipart.MultiPartFeature</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>
   </servlet>

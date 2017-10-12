@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "areaconhecimento")
@@ -14,15 +13,11 @@ public class AreaConhecimentoEntity {
 
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "nome")
+	@Column(name = "nome", nullable = false)
 	private String nome;
-	
-	@Column(name = "corDeFundo")
-	@Size(min = 6, max = 6)
-	private String corDeFundo;
 
 	public Integer getId() {
 		return id;
@@ -38,14 +33,6 @@ public class AreaConhecimentoEntity {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getCorDeFundo() {
-		return corDeFundo;
-	}
-
-	public void setCorDeFundo(String corDeFundo) {
-		this.corDeFundo = corDeFundo;
 	}
 	
 }

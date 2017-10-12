@@ -13,11 +13,11 @@ import br.net.softwave.server.http.Usuario.Permissao;
 public class UsuarioEntity {
 	
 	@Id
-	@Column(name="prontuario")
+	@Column(name = "prontuario")
 	@Size(max = 8)
 	private String prontuario;
 	
-	@Column(name="permissao")
+	@Column(name = "permissao", nullable = false)
 	@Size(min = 1, max = 9)
 	private String permissao;
 	

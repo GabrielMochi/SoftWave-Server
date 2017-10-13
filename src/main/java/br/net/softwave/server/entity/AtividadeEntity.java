@@ -30,7 +30,7 @@ public class AtividadeEntity implements Serializable {
 	private LocalDateTime lancada;
 	
 	@ManyToOne
-	@JoinColumn(name = "areaConhecimento_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "areaConhecimento_id", referencedColumnName = "id")
 	private AreaConhecimentoEntity areaConhecimento;
 	
 	@OneToMany(mappedBy = "atividade")

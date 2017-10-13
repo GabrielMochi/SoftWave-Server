@@ -35,11 +35,11 @@ public class MensagemEntity implements Serializable {
 	private Boolean recebida;
 
 	@ManyToOne
-	@JoinColumn(name = "mensageiro")
+	@JoinColumn(name = "mensageiro", referencedColumnName = "prontuario")
 	private UsuarioEntity mensageiro;
 	
 	@OneToOne
-	@JoinColumn(name = "receptor")
+	@JoinColumn(name = "receptor", referencedColumnName = "prontuario")
 	private UsuarioEntity receptor;
 
 	public MensagemEntity() {

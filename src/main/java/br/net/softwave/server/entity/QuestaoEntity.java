@@ -31,9 +31,8 @@ public class QuestaoEntity implements Serializable {
 	
 	@ManyToOne
 	@JoinColumns({ 
-		@JoinColumn(name = "atividade_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false),
-		@JoinColumn(name = "atividade_areaConhecimento_id", referencedColumnName = "areaConhecimento_id", nullable = false, 
-					insertable = false, updatable = false)
+		@JoinColumn(name = "atividade_id", referencedColumnName = "id"),
+		@JoinColumn(name = "atividade_areaConhecimento_id", referencedColumnName = "areaConhecimento_id")
 	})
 	private AtividadeEntity atividade;
 	

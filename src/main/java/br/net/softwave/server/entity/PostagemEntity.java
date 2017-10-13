@@ -25,11 +25,11 @@ public class PostagemEntity implements Serializable {
 	private Boolean visivel;
 	
 	@ManyToOne
-	@JoinColumn(name = "usuario_prontuario", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "usuario_prontuario", referencedColumnName = "prontuario")
 	private UsuarioEntity usuario;
 	
 	@ManyToOne
-	@JoinColumn(name = "areaConhecimento_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "areaConhecimento_id", referencedColumnName = "id")
 	private AreaConhecimentoEntity areaConhecimento;
 	
 	public PostagemEntity() {

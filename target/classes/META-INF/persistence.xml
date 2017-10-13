@@ -7,18 +7,6 @@
  
 	<persistence-unit name="persistence_unit_softwave" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>model.Areaconhecimento</class>
-		<class>model.Blog</class>
-		<class>model.BlogPK</class>
-		<class>model.Comentario</class>
-		<class>model.ComentarioPK</class>
-		<class>model.Forum</class>
-		<class>model.ForumPK</class>
-		<class>model.Postagem</class>
-		<class>model.PostagemPK</class>
-		<class>model.Usuario</class>
-		<class>model.Mensagem</class>
-		<class>model.MensagemPK</class>
      	<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

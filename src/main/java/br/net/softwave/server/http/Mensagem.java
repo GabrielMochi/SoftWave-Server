@@ -4,23 +4,19 @@ import java.time.LocalDateTime;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import br.net.softwave.server.entity.UsuarioEntity;
-
 @XmlRootElement
 public class Mensagem {
-	
+
 	private String texto;
 	private LocalDateTime dataEnvio;
 	private boolean recebida;
-	private UsuarioEntity transmissor;
-	private UsuarioEntity receptor;
-	
+	private Usuario transmissor;
+	private Usuario receptor;
+
 	public Mensagem() {
 	}
-	
-	public Mensagem(String texto, LocalDateTime dataEnvio, boolean recebida, UsuarioEntity transmissor,
-			UsuarioEntity receptor) {
-		super();
+
+	public Mensagem(String texto, LocalDateTime dataEnvio, boolean recebida, Usuario transmissor, Usuario receptor) {
 		this.texto = texto;
 		this.dataEnvio = dataEnvio;
 		this.recebida = recebida;
@@ -52,20 +48,26 @@ public class Mensagem {
 		this.recebida = recebida;
 	}
 
-	public UsuarioEntity getTransmissor() {
+	public Usuario getTransmissor() {
 		return transmissor;
 	}
 
-	public void setTransmissor(UsuarioEntity transmissor) {
+	public void setTransmissor(Usuario transmissor) {
 		this.transmissor = transmissor;
 	}
 
-	public UsuarioEntity getReceptor() {
+	public Usuario getReceptor() {
 		return receptor;
 	}
 
-	public void setReceptor(UsuarioEntity receptor) {
+	public void setReceptor(Usuario receptor) {
 		this.receptor = receptor;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Mensagem [texto=" + texto + ", dataEnvio=" + dataEnvio + ", recebida=" + recebida + ", transmissor="
+				+ transmissor + ", receptor=" + receptor + "]";
+	}
+
 }

@@ -7,20 +7,17 @@ public class AreaConhecimento {
 
 	private int id;
 	private String nome;
-	private String corDeFundo;
 	
 	public AreaConhecimento() {
 	}
 	
-	public AreaConhecimento(String nome, String corDeFundo) {
+	public AreaConhecimento(String nome) {
 		this.nome = nome;
-		this.corDeFundo = corDeFundo;
 	}
 	
-	public AreaConhecimento(int id, String nome, String corDeFundo) {	
+	public AreaConhecimento(int id, String nome) {	
 		this.id = id;
 		this.nome = nome;
-		this.corDeFundo = corDeFundo;
 	}
 
 	public int getId() {
@@ -39,12 +36,9 @@ public class AreaConhecimento {
 		this.nome = nome;
 	}
 
-	public String getCorDeFundo() {
-		return corDeFundo;
-	}
-
-	public void setCorDeFundo(String corDeFundo) {
-		this.corDeFundo = corDeFundo;
+	@Override
+	public String toString() {
+		return "AreaConhecimento [id=" + id + ", nome=" + nome + "]";
 	}
 	
 }

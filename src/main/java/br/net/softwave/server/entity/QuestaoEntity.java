@@ -1,44 +1,51 @@
 package br.net.softwave.server.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "questao")
-public class QuestaoEntity {
+public class QuestaoEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
+	private QuestaoEntityPK questaoEntityPK;
 	
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	@Column(name = "pergunta", nullable = false)
+	@Lob
+	@Column(name = "pergunta", nullable = false, insertable = false, updatable = false)
 	private String pergunta;
 	
-	@Column(name = "respostaCorreta", nullable = false)
+	@Column(name = "respostaCorreta", nullable = false, insertable = false, updatable = false)
 	@Size(min = 1, max = 1)
 	private String respostaCorreta;
 	
-	@Column(name = "atividade_id", nullable = false)
 	@ManyToOne
+	@JoinColumns({ 
+		@JoinColumn(name = "atividade_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false),
+		@JoinColumn(name = "atividade_areaConhecimento_id", referencedColumnName = "areaConhecimento_id", nullable = false, 
+					insertable = false, updatable = false)
+	})
 	private AtividadeEntity atividade;
 	
-	@Column(name = "atividade_areaConhecimento_id", nullable = false)
-	@ManyToOne
-	private AreaConhecimentoEntity areaConhecimento;
-
-	public Integer getId() {
-		return id;
+	public QuestaoEntity() {
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public QuestaoEntityPK getQuestaoEntityPK() {
+		return questaoEntityPK;
+	}
+
+	public void setQuestaoEntityPK(QuestaoEntityPK questaoEntityPK) {
+		this.questaoEntityPK = questaoEntityPK;
 	}
 
 	public String getPergunta() {
@@ -65,12 +72,10 @@ public class QuestaoEntity {
 		this.atividade = atividade;
 	}
 
-	public AreaConhecimentoEntity areaConhecimento() {
-		return areaConhecimento;
-	}
-
-	public void setAtividade_areaConhecimento_id(AreaConhecimentoEntity areaConhecimento) {
-		this.areaConhecimento = areaConhecimento;
+	@Override
+	public String toString() {
+		return "QuestaoEntity [questaoEntityPK=" + questaoEntityPK + ", pergunta=" + pergunta + ", respostaCorreta="
+				+ respostaCorreta + ", atividade=" + atividade + "]";
 	}
 	
 }

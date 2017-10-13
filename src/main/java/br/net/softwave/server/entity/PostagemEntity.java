@@ -1,10 +1,11 @@
 package br.net.softwave.server.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -12,31 +13,34 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "postagem")
-public class PostagemEntity {
+public class PostagemEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
+	private PostagemEntityPK postagemEntityPK;
 	
-	@Id
-	@Column(name = "id", nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	@Column(name = "visivel", nullable = false, columnDefinition = "TINYINT(1)")
+	@Column(name = "visivel", columnDefinition = "TINYINT(1)", nullable = false, insertable = false, updatable = false)
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean visivel;
 	
-	@Column(name = "areaConhecimento_id", nullable = false)
 	@ManyToOne
+	@JoinColumn(name = "usuario_prontuario", nullable = false, insertable = false, updatable = false)
+	private UsuarioEntity usuario;
+	
+	@ManyToOne
+	@JoinColumn(name = "areaConhecimento_id", nullable = false, insertable = false, updatable = false)
 	private AreaConhecimentoEntity areaConhecimento;
 	
-	@Column(name = "usuario_prontuario", nullable = false)
-	@ManyToOne
-	private UsuarioEntity usuario;
-
-	public Integer getId() {
-		return id;
+	public PostagemEntity() {
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public PostagemEntityPK getPostagemEntityPK() {
+		return postagemEntityPK;
+	}
+
+	public void setPostagemEntityPK(PostagemEntityPK postagemEntityPK) {
+		this.postagemEntityPK = postagemEntityPK;
 	}
 
 	public Boolean getVisivel() {
@@ -47,6 +51,14 @@ public class PostagemEntity {
 		this.visivel = visivel;
 	}
 
+	public UsuarioEntity getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioEntity usuario) {
+		this.usuario = usuario;
+	}
+
 	public AreaConhecimentoEntity getAreaConhecimento() {
 		return areaConhecimento;
 	}
@@ -55,12 +67,10 @@ public class PostagemEntity {
 		this.areaConhecimento = areaConhecimento;
 	}
 
-	public UsuarioEntity getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(UsuarioEntity usuario) {
-		this.usuario = usuario;
+	@Override
+	public String toString() {
+		return "PostagemEntity [postagemEntityPK=" + postagemEntityPK + ", visivel=" + visivel + ", usuario=" + usuario
+				+ "]";
 	}
 	
 }

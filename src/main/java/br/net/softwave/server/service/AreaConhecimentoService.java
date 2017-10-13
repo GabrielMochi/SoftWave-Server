@@ -20,7 +20,6 @@ public class AreaConhecimentoService extends Service<AreaConhecimento, AreaConhe
 	public void salvar(AreaConhecimento object) throws Exception {
 		AreaConhecimentoEntity areaConhecimentoEntity = new AreaConhecimentoEntity();
 		areaConhecimentoEntity.setNome(object.getNome());
-		areaConhecimentoEntity.setCorDeFundo(object.getCorDeFundo());
 		getRepository().salvar(areaConhecimentoEntity);		
 	}
 
@@ -29,7 +28,6 @@ public class AreaConhecimentoService extends Service<AreaConhecimento, AreaConhe
 		AreaConhecimentoEntity areaConhecimentoEntity = new AreaConhecimentoEntity();
 		areaConhecimentoEntity.setId(object.getId());
 		areaConhecimentoEntity.setNome(object.getNome());
-		areaConhecimentoEntity.setCorDeFundo(object.getCorDeFundo());
 		getRepository().alterar(areaConhecimentoEntity);
 	}
 
@@ -39,7 +37,7 @@ public class AreaConhecimentoService extends Service<AreaConhecimento, AreaConhe
 		List<AreaConhecimentoEntity> areaConhecimentoEntities = getRepository().pegarTodos("SELECT ac FROM AreaConhecimentoEntity ac");
 		
 		for (AreaConhecimentoEntity areaConhecimento : areaConhecimentoEntities) {
-			areasConhecimentos.add(new AreaConhecimento(areaConhecimento.getId(), areaConhecimento.getNome(), areaConhecimento.getCorDeFundo()));
+			areasConhecimentos.add(new AreaConhecimento(areaConhecimento.getId(), areaConhecimento.getNome()));
 		}
 		
 		return areasConhecimentos;
@@ -50,7 +48,7 @@ public class AreaConhecimentoService extends Service<AreaConhecimento, AreaConhe
 		AreaConhecimentoEntity areaConhecimentoEntity = getRepository().pegar(id);
 		
 		if (areaConhecimentoEntity != null) {
-			return new AreaConhecimento(areaConhecimentoEntity.getId(), areaConhecimentoEntity.getNome(), areaConhecimentoEntity.getCorDeFundo());
+			return new AreaConhecimento(areaConhecimentoEntity.getId(), areaConhecimentoEntity.getNome());
 		}
 		
 		return null;

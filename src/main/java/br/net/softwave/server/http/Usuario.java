@@ -33,6 +33,7 @@ public class Usuario {
 	}
 
 	public enum Permissao {
+		
 		ALUNO("ALUNO"), PROFESSOR("PROFESSOR"), ADMIN("ADMIN");
 		
 		private final String typeSelected;
@@ -44,6 +45,12 @@ public class Usuario {
 		public String getTypeSelected() {
 			return typeSelected;
 		}
+		
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [prontuario=" + prontuario + ", permissao=" + permissao + "]";
 	}
 	
 }

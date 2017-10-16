@@ -1,31 +1,34 @@
 package br.net.softwave.server.http;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class Atividade {
 
 	private int id;
+	private AreaConhecimento areaConhecimento;
 	private String descricao;
 	private LocalDateTime lancada;
-	private AreaConhecimento areaConhecimento;
+	private List<Questao> questoes;
 	
-	public Atividade()  {
+	public Atividade() {
 	}
-	
-	public Atividade(String descricao, LocalDateTime lancada, AreaConhecimento areaConhecimento) {
+
+	public Atividade(AreaConhecimento areaConhecimento, String descricao, LocalDateTime lancada,
+			List<Questao> questoes) {
+		this.areaConhecimento = areaConhecimento;
 		this.descricao = descricao;
 		this.lancada = lancada;
-		this.areaConhecimento = areaConhecimento;
+		this.questoes = questoes;
 	}
-	
-	public Atividade(int id, String descricao, LocalDateTime lancada, AreaConhecimento areaConhecimento) {
+
+	public Atividade(int id, AreaConhecimento areaConhecimento, String descricao, LocalDateTime lancada,
+			List<Questao> questoes) {
 		this.id = id;
+		this.areaConhecimento = areaConhecimento;
 		this.descricao = descricao;
 		this.lancada = lancada;
-		this.areaConhecimento = areaConhecimento;
+		this.questoes = questoes;
 	}
 
 	public int getId() {
@@ -34,6 +37,14 @@ public class Atividade {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public AreaConhecimento getAreaConhecimento() {
+		return areaConhecimento;
+	}
+
+	public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
+		this.areaConhecimento = areaConhecimento;
 	}
 
 	public String getDescricao() {
@@ -52,18 +63,18 @@ public class Atividade {
 		this.lancada = lancada;
 	}
 
-	public AreaConhecimento getAreaConhecimento() {
-		return areaConhecimento;
+	public List<Questao> getQuestoes() {
+		return questoes;
 	}
 
-	public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
-		this.areaConhecimento = areaConhecimento;
+	public void setQuestoes(List<Questao> questoes) {
+		this.questoes = questoes;
 	}
 
 	@Override
 	public String toString() {
-		return "Atividade [id=" + id + ", descricao=" + descricao + ", lancada=" + lancada + ", areaConhecimento="
-				+ areaConhecimento + "]";
+		return "Atividade [id=" + id + ", areaConhecimento=" + areaConhecimento + ", descricao=" + descricao
+				+ ", lancada=" + lancada + ", questoes=" + questoes + "]";
 	}
-
+	
 }

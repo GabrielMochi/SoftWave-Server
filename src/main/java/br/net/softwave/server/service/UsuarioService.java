@@ -21,7 +21,7 @@ public class UsuarioService extends Service<Usuario, UsuarioEntity, String> {
 	public void salvar(Usuario object) throws Exception {
 		UsuarioEntity usuarioEntity = new UsuarioEntity();
 		usuarioEntity.setProntuario(object.getProntuario());
-		usuarioEntity.setPermissao(object.getPermissao());
+		usuarioEntity.setPermissao(object.getPermissao().getValor());
 		getRepository().salvar(usuarioEntity);
 	}
 
@@ -29,7 +29,7 @@ public class UsuarioService extends Service<Usuario, UsuarioEntity, String> {
 	public void alterar(Usuario object) throws Exception {
 		UsuarioEntity usuarioEntity = new UsuarioEntity();
 		usuarioEntity.setProntuario(object.getProntuario());
-		usuarioEntity.setPermissao(object.getPermissao());
+		usuarioEntity.setPermissao(object.getPermissao().getValor());
 		getRepository().alterar(usuarioEntity);
 	}
 

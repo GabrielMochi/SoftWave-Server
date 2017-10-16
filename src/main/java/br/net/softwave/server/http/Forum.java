@@ -1,30 +1,15 @@
 package br.net.softwave.server.http;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class Forum {
 
-	private String texto;
 	private Postagem postagem;
-	private AreaConhecimento areaConhecimento;
-	private Usuario usuario;
+	private String texto;
 	
 	public Forum() {
 	}
 
-	public Forum(String texto, Postagem postagem, AreaConhecimento areaConhecimento, Usuario usuario) {
-		this.texto = texto;
+	public Forum(Postagem postagem, String texto) {
 		this.postagem = postagem;
-		this.areaConhecimento = areaConhecimento;
-		this.usuario = usuario;
-	}
-
-	public String getTexto() {
-		return texto;
-	}
-
-	public void setTexto(String texto) {
 		this.texto = texto;
 	}
 
@@ -36,26 +21,17 @@ public class Forum {
 		this.postagem = postagem;
 	}
 
-	public AreaConhecimento getAreaConhecimento() {
-		return areaConhecimento;
+	public String getTexto() {
+		return texto;
 	}
 
-	public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
-		this.areaConhecimento = areaConhecimento;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 
 	@Override
 	public String toString() {
-		return "Forum [texto=" + texto + ", postagem=" + postagem + ", areaConhecimento=" + areaConhecimento
-				+ ", usuario=" + usuario + "]";
+		return "Forum [postagem=" + postagem + ", texto=" + texto + "]";
 	}
 	
 }

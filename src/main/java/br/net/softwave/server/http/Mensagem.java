@@ -2,25 +2,38 @@ package br.net.softwave.server.http;
 
 import java.time.LocalDateTime;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class Mensagem {
-
+	
+	private Usuario mensageiro;
+	private Usuario receptor;
 	private String texto;
 	private LocalDateTime dataEnvio;
 	private boolean recebida;
-	private Usuario transmissor;
-	private Usuario receptor;
-
+	
 	public Mensagem() {
 	}
 
-	public Mensagem(String texto, LocalDateTime dataEnvio, boolean recebida, Usuario transmissor, Usuario receptor) {
+	public Mensagem(Usuario mensageiro, Usuario receptor, String texto, LocalDateTime dataEnvio, boolean recebida) {
+		this.mensageiro = mensageiro;
+		this.receptor = receptor;
 		this.texto = texto;
 		this.dataEnvio = dataEnvio;
 		this.recebida = recebida;
-		this.transmissor = transmissor;
+	}
+
+	public Usuario getMensageiro() {
+		return mensageiro;
+	}
+
+	public void setMensageiro(Usuario mensageiro) {
+		this.mensageiro = mensageiro;
+	}
+
+	public Usuario getReceptor() {
+		return receptor;
+	}
+
+	public void setReceptor(Usuario receptor) {
 		this.receptor = receptor;
 	}
 
@@ -48,26 +61,10 @@ public class Mensagem {
 		this.recebida = recebida;
 	}
 
-	public Usuario getTransmissor() {
-		return transmissor;
-	}
-
-	public void setTransmissor(Usuario transmissor) {
-		this.transmissor = transmissor;
-	}
-
-	public Usuario getReceptor() {
-		return receptor;
-	}
-
-	public void setReceptor(Usuario receptor) {
-		this.receptor = receptor;
-	}
-
 	@Override
 	public String toString() {
-		return "Mensagem [texto=" + texto + ", dataEnvio=" + dataEnvio + ", recebida=" + recebida + ", transmissor="
-				+ transmissor + ", receptor=" + receptor + "]";
+		return "Mensagem [mensageiro=" + mensageiro + ", receptor=" + receptor + ", texto=" + texto + ", dataEnvio="
+				+ dataEnvio + ", recebida=" + recebida + "]";
 	}
-
+	
 }

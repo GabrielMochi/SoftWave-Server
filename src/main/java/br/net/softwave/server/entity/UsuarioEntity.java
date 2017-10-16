@@ -10,6 +10,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import br.net.softwave.server.http.Postagem;
+
 @Entity
 @Table(name = "usuario")
 public class UsuarioEntity implements Serializable {
@@ -53,7 +55,7 @@ public class UsuarioEntity implements Serializable {
 	public List<PostagemEntity> getPostagemEntities() {
 		return postagemEntities;
 	}
-
+	
 	public void setPostagemEntities(List<PostagemEntity> postagemEntities) {
 		this.postagemEntities = postagemEntities;
 	}

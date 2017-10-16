@@ -1,21 +1,30 @@
 package br.net.softwave.server.http;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
-@XmlRootElement
 public class Usuario {
-	
+
 	private String prontuario;
 	private Permissao permissao;
-	
+	private List<Postagem> postagens;
+	private List<Mensagem> mensagens;
+
 	public Usuario() {
 	}
-	
-	public Usuario(String prontuario, Permissao permissao) {
+
+	public Usuario(Permissao permissao, List<Postagem> postagens, List<Mensagem> mensagens) {
+		this.permissao = permissao;
+		this.postagens = postagens;
+		this.mensagens = mensagens;
+	}
+
+	public Usuario(String prontuario, Permissao permissao, List<Postagem> postagens, List<Mensagem> mensagens) {
 		this.prontuario = prontuario;
 		this.permissao = permissao;
+		this.postagens = postagens;
+		this.mensagens = mensagens;
 	}
-	
+
 	public String getProntuario() {
 		return prontuario;
 	}
@@ -32,25 +41,42 @@ public class Usuario {
 		this.permissao = permissao;
 	}
 
+	public List<Postagem> getPostagens() {
+		return postagens;
+	}
+
+	public void setPostagens(List<Postagem> postagens) {
+		this.postagens = postagens;
+	}
+
+	public List<Mensagem> getMensagens() {
+		return mensagens;
+	}
+
+	public void setMensagens(List<Mensagem> mensagens) {
+		this.mensagens = mensagens;
+	}
+
 	public enum Permissao {
-		
+
 		ALUNO("ALUNO"), PROFESSOR("PROFESSOR"), ADMIN("ADMIN");
-		
-		private final String typeSelected;
-		
-		private Permissao(String typeSelected) {
-			this.typeSelected = typeSelected;
+
+		private final String valor;
+
+		private Permissao(String valor) {
+			this.valor = valor;
 		}
 
-		public String getTypeSelected() {
-			return typeSelected;
+		public String getValor() {
+			return valor;
 		}
-		
+
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [prontuario=" + prontuario + ", permissao=" + permissao + "]";
+		return "Usuario [prontuario=" + prontuario + ", permissao=" + permissao + ", postagens=" + postagens
+				+ ", mensagens=" + mensagens + "]";
 	}
-	
+
 }

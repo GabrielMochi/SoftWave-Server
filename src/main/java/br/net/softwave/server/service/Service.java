@@ -15,15 +15,14 @@ import javax.ws.rs.core.MediaType;
 import br.net.softwave.server.repository.Repository;
 
 /**
- * @param <T> Classe http
- * @param <E> Classe entidade
+ * @param <T> Classe entidade
  * @param <P> O tipo da chave primária. Ex.: Integer, String, etc.
  * */
-public abstract class Service<T, E, P> {
+public abstract class Service<T, P> {
 	
-	private final Repository<E> repository;
+	private final Repository<T> repository;
 	
-	public Service(Repository<E> repository) {
+	public Service(Repository<T> repository) {
 		this.repository = repository;
 	}
 	
@@ -69,7 +68,7 @@ public abstract class Service<T, E, P> {
 	@Path("remover/{id}")
 	public abstract void remover(@PathParam("id") P id) throws Exception;
 
-	public Repository<E> getRepository() {
+	public Repository<T> getRepository() {
 		return repository;
 	}
 	

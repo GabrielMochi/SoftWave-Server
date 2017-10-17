@@ -22,11 +22,13 @@ public class ComentarioEntity implements Serializable {
 	@Column(name = "texto", nullable = false)
 	private String texto;
 	
-	@OneToOne
+	@OneToOne(optional = false)
 	@JoinColumns({ 
-		@JoinColumn(name = "postagem_id", referencedColumnName = "id", nullable = false),
-		@JoinColumn(name = "postagem_areaConhecimento_id", referencedColumnName = "areaConhecimento_id", nullable = false),
-		@JoinColumn(name = "postagem_usuario_prontuario", referencedColumnName = "usuario_prontuario", nullable = false)
+		@JoinColumn(name = "postagem_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false),
+		@JoinColumn(name = "postagem_areaConhecimento_id", referencedColumnName = "areaConhecimento_id", nullable = false, 
+					insertable = false, updatable = false),
+		@JoinColumn(name = "postagem_usuario_prontuario", referencedColumnName = "usuario_prontuario", nullable = false, 
+					insertable = false, updatable = false)
 	})
 	private PostagemEntity postagemEntity;
 	

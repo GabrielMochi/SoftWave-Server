@@ -1,4 +1,4 @@
-package br.net.softwave.server.service;
+/*package br.net.softwave.server.service;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -23,7 +23,7 @@ public class LoginService {
 	
 	/**
 	 * HTTP POST -> Consulta se as credenciais correspondem.
-	 * */
+	 * *//*
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -45,4 +45,4 @@ public class LoginService {
 		return null;
 	}
 	
-}
+}*/

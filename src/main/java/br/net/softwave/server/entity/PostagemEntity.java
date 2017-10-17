@@ -24,12 +24,12 @@ public class PostagemEntity implements Serializable {
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean visivel;
 	
-	@ManyToOne
-	@JoinColumn(name = "usuario_prontuario", referencedColumnName = "prontuario")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "usuario_prontuario", referencedColumnName = "prontuario", nullable = false, insertable = false, updatable = false)
 	private UsuarioEntity usuario;
 	
-	@ManyToOne
-	@JoinColumn(name = "areaConhecimento_id", referencedColumnName = "id")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "areaConhecimento_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
 	private AreaConhecimentoEntity areaConhecimento;
 	
 	public PostagemEntity() {

@@ -16,16 +16,18 @@ public class BlogEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private BlogEntityPK blogEntityPK;	
-	
-	@OneToOne
+	private BlogEntityPK blogEntityPK;
+
+	@OneToOne(optional = false)
 	@JoinColumns({ 
-		@JoinColumn(name = "postagem_id", referencedColumnName = "id", nullable = false),
-		@JoinColumn(name = "postagem_areaConhecimento_id", referencedColumnName = "areaConhecimento_id", nullable = false),
-		@JoinColumn(name = "postagem_usuario_prontuario", referencedColumnName = "usuario_prontuario", nullable = false)
+		@JoinColumn(name = "postagem_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false),
+		@JoinColumn(name = "postagem_areaConhecimento_id", referencedColumnName = "areaConhecimento_id", nullable = false, 
+					insertable = false, updatable = false),
+		@JoinColumn(name = "postagem_usuario_prontuario", referencedColumnName = "usuario_prontuario", nullable = false,
+					insertable = false, updatable = false)
 	})
 	private PostagemEntity postagemEntity;
-	
+
 	public BlogEntity() {
 	}
 
@@ -49,5 +51,5 @@ public class BlogEntity implements Serializable {
 	public String toString() {
 		return "BlogEntity [blogEntityPK=" + blogEntityPK + ", postagemEntity=" + postagemEntity + "]";
 	}
-	
+
 }

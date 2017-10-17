@@ -1,80 +1,39 @@
 package br.net.softwave.server.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Path;
 
 import br.net.softwave.server.entity.UsuarioEntity;
-import br.net.softwave.server.http.Usuario;
-import br.net.softwave.server.http.Usuario.Permissao;
 import br.net.softwave.server.repository.UsuarioRepository;
 
 @Path("usuario")
-public class UsuarioService extends Service<Usuario, UsuarioEntity, String> {
+public class UsuarioService extends Service<UsuarioEntity, String> {
 
 	public UsuarioService() {
 		super(new UsuarioRepository());
 	}
 
 	@Override
-	public void salvar(Usuario object) throws Exception {
-		UsuarioEntity usuarioEntity = new UsuarioEntity();
-		usuarioEntity.setProntuario(object.getProntuario());
-		usuarioEntity.setPermissao(object.getPermissao().getValor());
-		getRepository().salvar(usuarioEntity);
+	public void salvar(UsuarioEntity object) throws Exception {
+		getRepository().salvar(object);
 	}
 
 	@Override
-	public void alterar(Usuario object) throws Exception {
-		UsuarioEntity usuarioEntity = new UsuarioEntity();
-		usuarioEntity.setProntuario(object.getProntuario());
-		usuarioEntity.setPermissao(object.getPermissao().getValor());
-		getRepository().alterar(usuarioEntity);
+	public void alterar(UsuarioEntity object) throws Exception {
+		getRepository().alterar(object);
 	}
 
 	@Override
-	public List<Usuario> pegarTodos() throws Exception {
-		List<Usuario> usuarios = new ArrayList<>();
+	public List<UsuarioEntity> pegarTodos() throws Exception {
 		List<UsuarioEntity> usuarioEntities = getRepository().pegarTodos("SELECT u FROM UsuarioEntity u");
-		
-		for (UsuarioEntity usuarioEntity : usuarioEntities) {
-			switch (usuarioEntity.getPermissao()) {
-				case "ALUNO":
-					usuarios.add(new Usuario(usuarioEntity.getProntuario(), Permissao.ALUNO));
-					break;
-				case "PROFESSOR":
-					usuarios.add(new Usuario(usuarioEntity.getProntuario(), Permissao.PROFESSOR));
-					break;
-				case "ADMIN":
-					usuarios.add(new Usuario(usuarioEntity.getProntuario(), Permissao.ADMIN));
-					break;
-				default:
-					throw new Exception();
-			}
-		}
-		
-		return usuarios;
+		System.out.println(usuarioEntities);
+		return usuarioEntities;
 	}
 
 	@Override
-	public Usuario pegar(String id) throws Exception {
-		UsuarioEntity usuarioEntity = getRepository().pegar(id);
-		
-		if (usuarioEntity != null) {
-			switch (usuarioEntity.getPermissao()) {
-				case "ALUNO":
-					return new Usuario(usuarioEntity.getProntuario(), Permissao.ALUNO);
-				case "PROFESSOR":
-					return new Usuario(usuarioEntity.getProntuario(), Permissao.PROFESSOR);
-				case "ADMIN":
-					return new Usuario(usuarioEntity.getProntuario(), Permissao.ADMIN);
-				default:
-					throw new Exception();
-			}
-		}
-		
-		return null;
+	public UsuarioEntity pegar(String id) throws Exception {
+		return getRepository().pegar(id);
 	}
 
 	@Override

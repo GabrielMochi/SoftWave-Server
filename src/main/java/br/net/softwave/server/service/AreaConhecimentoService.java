@@ -1,4 +1,4 @@
-package br.net.softwave.server.service;
+/*package br.net.softwave.server.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,4 +59,4 @@ public class AreaConhecimentoService extends Service<AreaConhecimento, AreaConhe
 		getRepository().remover(id);
 	}
 
-}
+}*/

@@ -1,5 +1,8 @@
 use softwave;
 
+insert into usuario (usuario.prontuario, usuario.permissao) values
+('1651803', 'ADMIN');
+
 insert into areaconhecimento (nome, corDeFundo) values 
 ('Ciências Exatas e da Terra', '0D47A1'),
 ('Ciências Biológicas', '009688'),

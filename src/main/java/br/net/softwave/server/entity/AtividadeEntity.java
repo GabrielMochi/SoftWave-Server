@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -29,11 +30,11 @@ public class AtividadeEntity implements Serializable {
 	@Column(name = "lancada", columnDefinition = "DATETIME", nullable = false, insertable = false, updatable = false)
 	private LocalDateTime lancada;
 	
-	@ManyToOne
-	@JoinColumn(name = "areaConhecimento_id", referencedColumnName = "id")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "areaConhecimento_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private AreaConhecimentoEntity areaConhecimento;
 	
-	@OneToMany(mappedBy = "atividade")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "atividade")
 	private List<QuestaoEntity> questao;
 	
 	public AtividadeEntity() {

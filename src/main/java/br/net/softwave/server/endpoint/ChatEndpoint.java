@@ -14,8 +14,8 @@ import javax.websocket.server.ServerEndpoint;
 
 import br.net.softwave.server.endpoint.decoder.MensagemDecoder;
 import br.net.softwave.server.endpoint.encoder.MensagemEncoder;
+import br.net.softwave.server.entity.MensagemEntity;
 import br.net.softwave.server.entity.UsuarioEntity;
-import br.net.softwave.server.http.Mensagem;
 import br.net.softwave.server.repository.UsuarioRepository;
 
 @ServerEndpoint(
@@ -34,7 +34,7 @@ public class ChatEndpoint {
 	}
 	
 	@OnMessage
-	public void onMessage(final Session session, final Mensagem mensagem) throws IOException, EncodeException {
+	public void onMessage(final Session session, final MensagemEntity mensagem) throws IOException, EncodeException {
 		broadcast(mensagem);
 	}
 	
@@ -48,7 +48,7 @@ public class ChatEndpoint {
 		// Tratamento de erro
 	}
 	
-	private static void broadcast(final Mensagem mensagem) throws IOException, EncodeException {
+	private static void broadcast(final MensagemEntity mensagem) throws IOException, EncodeException {
 		usuarios.forEach((session, usuario) -> {
 			synchronized (session) {
 				if (usuario.equals(mensagem.getReceptor())) {

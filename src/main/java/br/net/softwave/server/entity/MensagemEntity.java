@@ -34,12 +34,12 @@ public class MensagemEntity implements Serializable {
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean recebida;
 
-	@ManyToOne
-	@JoinColumn(name = "mensageiro", referencedColumnName = "prontuario")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "mensageiro", referencedColumnName = "prontuario", nullable = false, insertable = false, updatable = false)
 	private UsuarioEntity mensageiro;
 	
-	@OneToOne
-	@JoinColumn(name = "receptor", referencedColumnName = "prontuario")
+	@OneToOne(optional = false)
+	@JoinColumn(name = "receptor", referencedColumnName = "prontuario", nullable = false, insertable = false, updatable = false)
 	private UsuarioEntity receptor;
 
 	public MensagemEntity() {

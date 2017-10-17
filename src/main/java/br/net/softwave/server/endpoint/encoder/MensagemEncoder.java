@@ -6,14 +6,14 @@ import javax.websocket.EndpointConfig;
 
 import com.google.gson.Gson;
 
-import br.net.softwave.server.http.Mensagem;
+import br.net.softwave.server.entity.MensagemEntity;
 
-public class MensagemEncoder implements Encoder.Text<Mensagem> {
+public class MensagemEncoder implements Encoder.Text<MensagemEntity> {
 	
 	private final static Gson gson = new Gson();
 	
 	@Override
-	public String encode(Mensagem mensagem) throws EncodeException {
+	public String encode(MensagemEntity mensagem) throws EncodeException {
 		return gson.toJson(mensagem);
 	}
 	

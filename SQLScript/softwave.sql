@@ -126,7 +126,6 @@ ENGINE = InnoDB;
 -- Table `softwave`.`blog`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `softwave`.`blog` (
-  `enderecoConeteudo` VARCHAR(45) NOT NULL,
   `postagem_id` INT NOT NULL,
   `postagem_areaConhecimento_id` INT NOT NULL,
   `postagem_usuario_prontuario` VARCHAR(7) NOT NULL,

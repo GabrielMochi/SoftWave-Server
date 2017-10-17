@@ -29,10 +29,11 @@ public class QuestaoEntity implements Serializable {
 	@Size(min = 1, max = 1)
 	private String respostaCorreta;
 	
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@JoinColumns({ 
-		@JoinColumn(name = "atividade_id", referencedColumnName = "id"),
-		@JoinColumn(name = "atividade_areaConhecimento_id", referencedColumnName = "areaConhecimento_id")
+		@JoinColumn(name = "atividade_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false),
+		@JoinColumn(name = "atividade_areaConhecimento_id", referencedColumnName = "areaConhecimento_id", nullable = false, 
+					insertable = false, updatable = false)
 	})
 	private AtividadeEntity atividade;
 	
